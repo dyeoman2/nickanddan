@@ -466,7 +466,7 @@ const deepClone = cloneDeep(users1);
  */
 function applyAndEmpty(input, queue) {
   // iterate through the array of functions
-  for(const cb of queue) {
+  for (const cb of queue) {
     // reassign the value of input to the evaluaed outcome of the queue at index i with input passed
     input = cb(input)
   }
@@ -474,37 +474,56 @@ function applyAndEmpty(input, queue) {
 }
 
 const puzzlers = [
-  function(a) { return 8 * a - 10; },
-  function(a) { return (a - 3) * (a - 3) * (a - 3); },
-  function(a) { return a * a + 4;},
-  function(a) { return a % 5;}
+  function (a) { return 8 * a - 10; },
+  function (a) { return (a - 3) * (a - 3) * (a - 3); },
+  function (a) { return a * a + 4; },
+  function (a) { return a % 5; }
 ];
 const start = 2;
-console.log(applyAndEmpty(2, puzzlers)) // 3
+// console.log(applyAndEmpty(2, puzzlers)) // 3
 
 /**
  * Returns a function that is restricted to invoking func once.
  * Repeat calls to the function return the value of the first call.
  */
-function once(func) {}
+function once(func) {
+  let called = false;
+  let firstResult;
+  //return fxn 
+  return function (arg) {
+    if (!called) {
+      called = true;
+      firstResult = func(arg)
+
+    }
+    return firstResult;
+
+  }
+
+}
+
+const numByTwo = num => num * 2;
+const once2 = once(numByTwo)
+// console.log(once2(10))
+// console.log(once2(20))
 
 /**
  * Returns a function that when called, will check if it has already computed
  * the result for the given argument and return that value instead if possible.
  */
-function memoize(func) {}
+function memoize(func) { }
 
 /**
  * Invokes func after wait milliseconds.
  * Any additional arguments are provided to func when it is invoked.
  */
-function delay(func, wait) {}
+function delay(func, wait) { }
 
 /**
  * Returns a function that only invokes func once per every wait milliseconds
  * (additional calls to func within the wait should not be invoked or queued).
  */
-function throttle(func, wait) {}
+function throttle(func, wait) { }
 
 /**
  * Creates an array of elements, sorted in ascending order by the results of
@@ -520,7 +539,7 @@ function throttle(func, wait) {}
  * ];
  * pluck(sortBy(users, 'user'), 'user'); → ['barney', 'fred', 'pebbles']
  */
-function sortBy(array, iterator) {}
+function sortBy(array, iterator) { }
 
 /**
  * Returns a list of integers from start (inclusive) to stop (exclusive), incremented (or decremented) by step
@@ -531,7 +550,7 @@ function sortBy(array, iterator) {}
  * range(0,30,5); -> [0,5,10,15,20,25]
  * range(0,-10,-1); -> [0,-1,-2,-3,-4,-5,-6,-7,-8,-9]
  */
-function range(start, stop, step) {}
+function range(start, stop, step) { }
 
 /**
  * split array into two array based on those elements who satisfies the predicate (callback)
@@ -540,19 +559,19 @@ function range(start, stop, step) {}
  * }); -> [[0,2,4,6],[1,3,5]];
  * BONUS: Use two lodash functions that you created in this unit
  */
-function partition(array, predicate) {}
+function partition(array, predicate) { }
 
 /**
  * Receives a variable number of arrays, and returns an array that contains every item shared between all passed-in arrays
  * intersection([1, 2, 3], [101, 2, 1, 10], [2, 1]); -> [1,2]
  */
-function intersection() {}
+function intersection() { }
 
 /**
  * Returns an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
  * zip(['fred', 'barney'], [30, 40], [true, false]); → [['fred', 30, true], ['barney', 40, false]]
  */
-function zip() {}
+function zip() { }
 /**
  * returns a function that will only be run after first being called count times
  * let called = function() { console.log('hello') };
@@ -562,7 +581,7 @@ function zip() {}
  * afterCalled(); -> 'hello is printed'
  * afterCalled(); -> 'hello is printed'
  */
-function after(count, func) {}
+function after(count, func) { }
 
 /**
  * Returns a function that can be called no more than count times.
@@ -575,7 +594,7 @@ function after(count, func) {}
  * beforePrintAndIncrementCount(); prints 1
  * beforePrintAndIncrementCount(); prints 1
  */
-function before(count, func) {}
+function before(count, func) { }
 
 /**
  * Write a function that creates arrays. The first argument is the length. The second
@@ -585,4 +604,4 @@ function before(count, func) {}
  * arrayFactory(4, square); -> [0, 1, 4, 9]
  * Remember the zero-based index for arrays. 3 Was passed as the last argument for an array of length 4.
  */
-function arrayFactory(length, processor) {}
+function arrayFactory(length, processor) { }
