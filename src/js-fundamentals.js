@@ -422,6 +422,7 @@ function extend(...args) {
   }, {});
   // blah
   // another blah
+  // a third blah
 }
 
 // console.log(extend({ 'user': 'barney' }, { 'age': 40 }, { 'user': 'fred' })) //→ { 'user': 'fred', 'age': 40 }
