@@ -450,9 +450,9 @@ function cloneDeep(value) {
 }
 const users1 = [{ user: 'barney' }, { user: 'fred' }];
 const deepClone = cloneDeep(users1);
-console.log(deepClone === users1); //→ false
-console.log(deepClone[0] === users1[0]); // → false
-console.log(deepClone[0].user === users1[0].user); //→ true
+// console.log(deepClone === users1); //→ false
+// console.log(deepClone[0] === users1[0]); // → false
+// console.log(deepClone[0].user === users1[0].user); //→ true
 /**
  * Using a for loop, call the functions in the queue in order with the input number, where the results of each function become the next function’s input. Additionally, the queue should be empty after the function is called.
  * let puzzlers = [
@@ -464,7 +464,23 @@ console.log(deepClone[0].user === users1[0].user); //→ true
  * let start = 2;
  * applyAndEmpty(2, puzzlers); → 3
  */
-function applyAndEmpty(input, queue) {}
+function applyAndEmpty(input, queue) {
+  // iterate through the array of functions
+  for(const cb of queue) {
+    // reassign the value of input to the evaluaed outcome of the queue at index i with input passed
+    input = cb(input)
+  }
+  return input
+}
+
+const puzzlers = [
+  function(a) { return 8 * a - 10; },
+  function(a) { return (a - 3) * (a - 3) * (a - 3); },
+  function(a) { return a * a + 4;},
+  function(a) { return a % 5;}
+];
+const start = 2;
+console.log(applyAndEmpty(2, puzzlers)) // 3
 
 /**
  * Returns a function that is restricted to invoking func once.
